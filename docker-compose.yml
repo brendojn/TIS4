@@ -1,0 +1,31 @@
+version: "3"
+
+services:
+
+  db:
+    image: mysql:5.6
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data: /var/lib/mysql
+    environment:
+      - MYSQL_USER=root
+      - MYSQL_ROOT_PASSWORD=tis4
+      - MYSQL_DATABASE=tis4
+  
+  server:  
+    build: src/.
+    command: npm start
+    links: 
+      - db
+    environment:
+      - HOST=localhost:3000
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/tis4
+    working_dir: 
+      - /tis4
+    depends on:
+      - db
+    container_name: tis4      
