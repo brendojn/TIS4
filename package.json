@@ -1,27 +1,34 @@
 {
-  "name": "tis4",
+  "name": "hermes-api",
   "version": "1.0.0",
-  "main": "Startup.js",
+  "description": "",
+  "main": "index.js",
   "scripts": {
     "start": "nodemon src/server.js"
   },
-  "repository": "https://otaviocelani@bitbucket.org/tis4/tis4.git",
-  "author": "Otávio Celani <celani.silva@gmail.com>",
-  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/victorseara/TIS4.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/victorseara/TIS4/issues"
+  },
+  "homepage": "https://github.com/victorseara/TIS4#readme",
   "dependencies": {
-    "bcryptjs": "^2.4.3",
-    "body-parser": "^1.19.0",
-    "console-stamp": "^0.2.9",
-    "cors": "^2.8.5",
     "express": "^4.17.1",
-    "fs": "^0.0.1-security",
-    "moment-timezone": "^0.5.26",
-    "multer": "^1.4.2",
-    "path": "^0.12.7",
-    "router": "^1.3.3",
-    "sequelize": "^5.18.4"
+    "mysql2": "^1.7.0",
+    "nodemon": "^1.19.2",
+    "sequelize": "^5.19.0"
   },
   "devDependencies": {
-    "nodemon": "^1.19.2"
+    "eslint": "^6.4.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-config-prettier": "^6.3.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-prettier": "^3.1.1",
+    "prettier": "^1.18.2",
+    "sequelize-cli": "^5.5.1"
   }
 }
