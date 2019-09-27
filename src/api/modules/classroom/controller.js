@@ -2,7 +2,7 @@ import Classroom from './model';
 
 class ClassroomController {
   async store(req, res) {
-    const { userId } = req.params;
+    const userId = req.userId;
 
     const { name, description } = req.body;
 

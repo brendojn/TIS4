@@ -15,9 +15,6 @@ routes.post('/sessions', SessionController.store);
 routes.use(authMiddlawre);
 routes.put('/users', UserController.update);
 routes.delete('/users', UserController.delete);
-
-//Verify this later...
-
-routes.post('/classrooms/:userId', ClassroomController.store);
+routes.post('/classrooms', ClassroomController.store);
 
 export default routes;

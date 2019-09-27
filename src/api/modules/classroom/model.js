@@ -7,7 +7,7 @@ class Classroom extends Model {
       {
         name: Sequelize.STRING,
         description: Sequelize.STRING,
-        professor_id: {
+        user_id: {
           type: Sequelize.INTEGER,
           allowNull: false,
         },
@@ -16,7 +16,10 @@ class Classroom extends Model {
         sequelize,
       }
     );
-    this.belongsTo(User);
+    this.belongsTo(User, {
+      foreignKey: 'user_id',
+      onDelete: 'CASCADE',
+    });
   }
 }
 
