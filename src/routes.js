@@ -1,6 +1,8 @@
 import { Router } from 'express';
-import UserController from '../src/api/modules/user/controller';
-import ClassroomController from '../src/api/modules/classroom/controller';
+import UserController from './api/modules/user/controller';
+import SessionController from './api/modules/session/controller';
+import ClassroomController from './api/modules/classroom/controller';
+import authMiddlawre from './api/middlewares/auth';
 
 const routes = new Router();
 
@@ -9,7 +11,13 @@ routes.get('/', (req, res) => {
 });
 
 routes.post('/users', UserController.store);
+routes.post('/sessions', SessionController.store);
+routes.use(authMiddlawre);
 routes.put('/users', UserController.update);
+routes.delete('/users', UserController.delete);
+
+//Verify this later...
+
 routes.post('/classrooms/:userId', ClassroomController.store);
 
 export default routes;
