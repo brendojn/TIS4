@@ -2,7 +2,7 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('professors', {
+    return queryInterface.createTable('users', {
       id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
@@ -13,24 +13,30 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      registration: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        unique: true,
-      },
       email: {
         type: Sequelize.STRING,
         allowNull: false,
         unique: true,
       },
-      profile_img: Sequelize.STRING,
       password: {
         type: Sequelize.STRING,
         allowNull: false,
       },
+      profile_img: Sequelize.STRING,
+      registration: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        unique: true,
+      },
       course: Sequelize.STRING,
       adm: {
         type: Sequelize.BOOLEAN,
+        defaultValue: false,
+      },
+      semester: Sequelize.STRING,
+      professor: {
+        type: Sequelize.BOOLEAN,
+        allowNull: false,
         defaultValue: false,
       },
       created_at: {
@@ -44,7 +50,7 @@ module.exports = {
     });
   },
 
-  down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('professors');
+  down: queryInterface => {
+    return queryInterface.dropTable('users');
   },
 };

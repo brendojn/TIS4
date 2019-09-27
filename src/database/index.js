@@ -2,11 +2,10 @@ import Sequelize from 'sequelize';
 import databaseConfig from '../config/database';
 
 //  ! All models must be imported below ! //
-import Student from '../api/modules/student/model';
+import User from '../api/modules/user/model';
 import Classroom from '../api/modules/classroom/model';
-import Professor from '../api/modules/professor/model';
 
-const models = [Professor, Classroom];
+const models = [User, Classroom];
 
 class Database {
   constructor() {

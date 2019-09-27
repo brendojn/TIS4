@@ -1,5 +1,5 @@
 import Sequelize, { Model } from 'sequelize';
-import Professor from '../professor/model';
+import User from '../user/model';
 
 class Classroom extends Model {
   static init(sequelize) {
@@ -16,7 +16,7 @@ class Classroom extends Model {
         sequelize,
       }
     );
-    this.belongsTo(Professor);
+    this.belongsTo(User);
   }
 }
 
