@@ -6,7 +6,7 @@ import User from '../api/modules/user';
 import Student from '../api/modules/student/Student';
 import Class from '../api/modules/class/Class';
 
-const models = [User, Student, Class, x];
+const models = [User, Student, Class];
 
 class Database {
   constructor() {
