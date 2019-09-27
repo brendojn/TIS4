@@ -2,11 +2,11 @@ import Sequelize from 'sequelize';
 import databaseConfig from '../config/database';
 
 //  ! All models must be imported below ! //
-import User from '../api/modules/user';
-import Student from '../api/modules/student/Student';
-import Class from '../api/modules/class/Class';
+import Student from '../api/modules/student/model';
+import Classroom from '../api/modules/classroom/model';
+import Professor from '../api/modules/professor/model';
 
-const models = [User, Student, Class];
+const models = [Professor, Classroom];
 
 class Database {
   constructor() {
@@ -15,8 +15,7 @@ class Database {
 
   init() {
     this.connection = new Sequelize(databaseConfig);
-
-    models.map(model => model.init());
+    models.map(model => model.init(this.connection));
   }
 }
 
