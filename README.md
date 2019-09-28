@@ -9,3 +9,5 @@ Software Educacional para ensino-aprendizagem dos pronunciamentos contábeis da 
 <h3>Fluxo de trabalho</h3>
 <h3>Testes</h3>
  
+
+# Não utilizar a master!
