@@ -1,6 +1,6 @@
 import api from './api';
 
-const PORT = '3333';
+const PORT = '5000';
 
 api.listen(PORT);
 
