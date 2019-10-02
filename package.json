@@ -4,7 +4,6 @@
   "description": "Software educacional para ensino-aprendizagem das normas da Contabilidade Internacional",
   "main": "index.js",
   "scripts": {
-    "install": "npm install && cd api && npm install && cd .. && cd app && npm install ",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
