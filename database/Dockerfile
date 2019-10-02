@@ -6,4 +6,4 @@ ENV MYSQL_ROOT_PASSWORD tis4
 
 RUN echo "America/Sao_Paulo" > /etc/timezone && dpkg-reconfigure -f noninteractive tzdata
 
-EXPOSE 3336
+EXPOSE 4000
