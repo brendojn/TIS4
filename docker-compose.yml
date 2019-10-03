@@ -29,11 +29,11 @@ services:
     networks:
       - webappnetwork
   db:
-    build: ./database
+    build: ./api/database
     restart: always
     container_name: tis4-db
     volumes:
-      - ./database:/data/db
+      - ./api/database:/data/db
     ports:
       - '3306:3306'
     command: --default-authentication-plugin=mysql_native_password
