@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
       shift: DataTypes.STRING,
       class_code: DataTypes.STRING,
     },
-    {}
+    { sequelize }
   );
 
   Classroom.associate = function(models) {
