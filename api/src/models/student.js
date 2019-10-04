@@ -1,5 +1,5 @@
 import Sequelize, { Model } from 'sequelize';
-import Password from '../modules/auth/password';
+import Password from '../middlewares/auth/password';
 
 class Student extends Model {
   static init(sequelize) {

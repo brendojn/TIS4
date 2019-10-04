@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import ProfessorController from './controllers/ProfessorController';
-import Session from './modules/auth/session';
-import AuthMiddleware from './modules/auth/auth';
+import Session from './middlewares/auth/session';
+import AuthMiddleware from './middlewares/auth/auth';
 
 const routes = new Router();
 
