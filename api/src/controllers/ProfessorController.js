@@ -21,6 +21,10 @@ class ProfessorController {
       },
     });
   }
+
+  async update(req, res) {
+    res.json({ msg: 'Its working :)' });
+  }
 }
 
 export default new ProfessorController();

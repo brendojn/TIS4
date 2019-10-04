@@ -2,6 +2,7 @@ import jwt from 'jsonwebtoken';
 import Professor from '../../models/professor';
 import Student from '../../models/student';
 import Password from './password';
+import authConfig from '../../../config/auth';
 
 class Session {
   async store(req, res) {
@@ -28,8 +29,8 @@ class Session {
         id,
         name,
         email,
-        token: jwt.sign({ id }, '8c3b1a0fa90539071fbef7a8400c47b2', {
-          expiresIn: '7d',
+        token: jwt.sign({ id }, authConfig.secret, {
+          expiresIn: authConfig.expiresIn,
         }),
       },
     });
