@@ -7,6 +7,6 @@ routes.get('/', (req, res) => {
   res.json({ message: `It's all working fine :]` });
 });
 
-routes.post('/professors', ProfessorController);
+routes.post('/professors', ProfessorController.store);
 
 export default routes;
