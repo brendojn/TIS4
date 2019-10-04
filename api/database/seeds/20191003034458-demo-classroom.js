@@ -12,8 +12,8 @@ module.exports = {
           shift: 'nocturne',
           class_code: 'y78h4ff',
           professor_id: 1,
-          createdAt: new Date(),
-          updatedAt: new Date(),
+          created_at: new Date(),
+          updated_at: new Date(),
         },
       ],
       {}

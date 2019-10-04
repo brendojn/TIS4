@@ -11,8 +11,8 @@ module.exports = {
           password: 'dev',
           registration: 202020,
           active: true,
-          createdAt: new Date(),
-          updatedAt: new Date(),
+          created_at: new Date(),
+          updated_at: new Date(),
         },
       ],
       {}

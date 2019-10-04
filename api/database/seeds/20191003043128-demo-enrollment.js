@@ -8,8 +8,8 @@ module.exports = {
         {
           classroom_id: 1,
           student_id: 1,
-          createdAt: new Date(),
-          updatedAt: new Date(),
+          created_at: new Date(),
+          updated_at: new Date(),
         },
       ],
       {}

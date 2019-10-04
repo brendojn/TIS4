@@ -2,7 +2,7 @@ import Professor from '../models/professor';
 
 class ProfessorController {
   async store(req, res) {
-    const alreadyExists = Professor.findOne({
+    const alreadyExists = await Professor.findOne({
       where: { email: req.body.email },
     });
 
@@ -10,7 +10,7 @@ class ProfessorController {
       return res.status(402).json({ error: 'This user already exists.' });
     }
 
-    const professor = Professor.create(req.body);
+    const professor = await Professor.create(req.body);
 
     res.json(professor);
   }
