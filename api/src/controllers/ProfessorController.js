@@ -10,9 +10,16 @@ class ProfessorController {
       return res.status(402).json({ error: 'This user already exists.' });
     }
 
-    const professor = await Professor.create(req.body);
+    const { id, name, email, registration } = await Professor.create(req.body);
 
-    res.json(professor);
+    res.json({
+      professor: {
+        id,
+        name,
+        email,
+        registration,
+      },
+    });
   }
 }
 
