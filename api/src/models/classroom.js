@@ -1,5 +1,5 @@
 import Sequelize, { Model } from 'sequelize';
-import Professor from '../models/professor';
+import Professor from './professor';
 
 class Classroom extends Model {
   static init(sequelize) {
