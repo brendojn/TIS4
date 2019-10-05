@@ -1,5 +1,6 @@
 import Sequelize, { Model } from 'sequelize';
-import Professor from './professor';
+
+const professor = require ('./professor');
 
 class Classroom extends Model {
   static init(sequelize) {
@@ -17,7 +18,7 @@ class Classroom extends Model {
     );
   }
   static associate(models) {
-    this.belongsTo(models.Professor);
+    this.belongsTo(professor);
   }
 }
 

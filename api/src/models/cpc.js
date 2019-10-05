@@ -1,5 +1,6 @@
 import Sequelize, { Model } from 'sequelize';
-import Password from 'api/src/middlewares/auth/password';
+
+const enrollment = require('./enrollment')
 
 class Cpc extends Model {
   static init(sequelize) {
