@@ -1,11 +1,11 @@
-const { Cpc, Status, User, Sequelize } = require('./../../config/models');
+const { Cpc, Status, Student, Professor, Sequelize } = require('./../../config/models');
 const { Op } = Sequelize;
 const MomentTimezone = require('moment-timezone');
 
 /**
- * Show all cpcs
+ * Show all cpcs ('private' method)
  */
-exports._showAllCpc = (classroomWhere = {}, cpcWhere = {}, statusWhere = {}) => {
+exports._showAllCpc = (classroomWhere = {}, cpcWhere = {}, studentWhere = {}, professorWhere = {}) => {
     return Cpc.findAll({
         where: cpcWhere,
         include: [{
@@ -17,9 +17,11 @@ exports._showAllCpc = (classroomWhere = {}, cpcWhere = {}, statusWhere = {}) => 
                 as: 'enrollment',
                 include: [{
                     model: Student,
+                    where: studentWhere,
                     as: 'student'
                 }, {
                     model: Professor,
+                    where: professorWhere,
                     as: 'professor'
                 }]
             }]
@@ -31,6 +33,31 @@ exports._showAllCpc = (classroomWhere = {}, cpcWhere = {}, statusWhere = {}) => 
 };
 
 /**
+ * Show all cpcs
+ */
+exports.showAllCpc = (req, res) => {
+    const userId = req.userId;
+    const now = new MomentTimezone().format('YYYY-MM-DD[T]HH:mm:ss.SSS[Z]');
+    const cpcWhere = { end: { [Op.gt]: now } };
+    const classroomTrack = { userId }
+
+    this._showAllCpc(classroomWhere, cpcWhere, null)
+        .then(cpcs => {
+            let cpcTrack = [];
+
+            cpcs.forEach(cpc => {
+                cpcTrack.push(cpc);
+            });
+            res.status(200).json(cpcTrack);
+        },
+        err => {
+            console.log(err);
+            res.status(500).send();
+        }
+        )
+};
+
+/**
  * Find a cpc by id
  */
 // exports.findById = (req, res) => {
@@ -38,8 +65,7 @@ exports._showAllCpc = (classroomWhere = {}, cpcWhere = {}, statusWhere = {}) => 
 //     const userId = req.user.userId;
 //     const id = req.params.id;
 //     const profile = req.user.profile;
-//     const cpc = (profile === 'usr') ? { student: student_id } : { professor: professor_id};
-//     const statusWhere = (profile === 'usr') ? { [Op.or]: [{ name: 'confirmado' }, { name: 'selecionado' }] } : {};
+//     const cpc = (profile === 'usr') ? { student: user_id } : { professor: professor_id};
 
 //     Cpc.findOne({
 //         where: { id },
@@ -58,7 +84,7 @@ exports._showAllCpc = (classroomWhere = {}, cpcWhere = {}, statusWhere = {}) => 
 //     }).then(
 //         activity => {
 //             activity.dataValues['student_begin'] = (activity.length) ? activity[0] : null;
-//             res.status(200).json(job)
+//             res.status(200).json(cpc)
 //         },
 //         err => {
 //             console.log(err);
