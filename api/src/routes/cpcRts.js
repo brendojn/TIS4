@@ -1,27 +1,21 @@
-/* eslint-disable import/no-unresolved */
-import { Router } from 'express';
-import path from 'path';
-import fs from 'fs';
+const { Router } = require('express');
+const controller = require('./../controllers/cpcCtrl');
+const userController = require('../controllers/userCtrl');
+const auth = require('./../middlewares/auth');
+const router = new Router();
 
-import {
-  GetAll,
-  Create,
-  GetOneById,
-  UpdateById,
-  Delete,
-} from '../controllers/teste';
+/**
+ * Show all cpc
+ */
+router.get('/classroom', auth.authenticate(), async (req, res) => {
+    controller.showAllNearsVacancies(req, res);
+    });
 
-const router = Router();
+/**
+ * Find a job vacancie by id 
+ */
+router.get('/:id', auth.authenticate(), (req, res) => {
+    controller.findById(req, res);
+});
 
-router
-  .route('/')
-  .get(GetAll)
-  .post(Create);
-
-router
-  .route('/:id')
-  .get(GetOneById)
-  .put(UpdateById)
-  .delete(Delete);
-
-export default router;
+exports.router = router;
