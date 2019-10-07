@@ -2,14 +2,13 @@
 import { Router } from 'express';
 import path from 'path';
 import fs from 'fs';
-
 import {
   GetAll,
   Create,
   GetOneById,
   UpdateById,
   Delete,
-} from '../controllers/teste';
+} from '../controllers/alternativeCtrl';
 
 const router = Router();
 

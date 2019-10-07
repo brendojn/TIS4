@@ -1,14 +1,10 @@
 import {
-  Sequelize,
   find,
   findById,
   findOneAndUpdate,
   remove,
   create,
-} from '../models/cpc';
-
-const { Op } = Sequelize;
-const MomentTimezone = require('moment-timezone');
+} from '../models/alternative';
 
 const GetAll = async (req, res) => {
   try {
@@ -17,6 +13,7 @@ const GetAll = async (req, res) => {
     return res.status(400).send(error.message);
   }
 };
+
 const GetOneById = async (req, res) => {
   try {
     return res.send(await findById(req.params.id));
@@ -24,6 +21,7 @@ const GetOneById = async (req, res) => {
     return res.status(400).send(error.message);
   }
 };
+
 const UpdateById = async (req, res) => {
   try {
     const allFiles = req.files;
@@ -33,7 +31,7 @@ const UpdateById = async (req, res) => {
     console.log(allFiles);
     if (allFiles) {
       for (const key in allFiles) {
-        Obj[key] = `images/cpc/${key}/${allFiles[key][0].filename}`;
+        Obj[key] = `images/alternative/${key}/${allFiles[key][0].filename}`;
       }
     }
     return res.send(
@@ -71,7 +69,7 @@ const Create = async (req, res) => {
     console.log(allFiles);
     if (allFiles) {
       for (const key in allFiles) {
-        Obj[key] = `images/cpc/${key}/${allFiles[key][0].filename}`;
+        Obj[key] = `images/alternative/${key}/${allFiles[key][0].filename}`;
       }
     }
 

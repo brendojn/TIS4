@@ -1,25 +1,15 @@
-import {
-  Sequelize,
-  find,
-  findById,
-  findOneAndUpdate,
-  remove,
-  create,
-} from '../models/cpc';
-
-const { Op } = Sequelize;
-const MomentTimezone = require('moment-timezone');
+const choices_question = require('../models/choices_question');
 
 const GetAll = async (req, res) => {
   try {
-    return res.send(await find());
+    return res.send(await choices_question.find());
   } catch (error) {
     return res.status(400).send(error.message);
   }
 };
 const GetOneById = async (req, res) => {
   try {
-    return res.send(await findById(req.params.id));
+    return res.send(await choices_question.findById(req.params.id));
   } catch (error) {
     return res.status(400).send(error.message);
   }
@@ -33,11 +23,12 @@ const UpdateById = async (req, res) => {
     console.log(allFiles);
     if (allFiles) {
       for (const key in allFiles) {
-        Obj[key] = `images/cpc/${key}/${allFiles[key][0].filename}`;
+        Obj[key] =
+          `images/choices_question/${  key  }/${  allFiles[key][0].filename}`;
       }
     }
     return res.send(
-      await findOneAndUpdate(
+      await choices_question.findOneAndUpdate(
         {
           _id: req.params.id,
         },
@@ -54,7 +45,7 @@ const UpdateById = async (req, res) => {
 const Delete = async (req, res) => {
   try {
     return res.send(
-      await remove({
+      await choices_question.remove({
         _id: req.params.id,
       })
     );
@@ -71,12 +62,13 @@ const Create = async (req, res) => {
     console.log(allFiles);
     if (allFiles) {
       for (const key in allFiles) {
-        Obj[key] = `images/cpc/${key}/${allFiles[key][0].filename}`;
+        Obj[key] =
+          `images/choices_question/${  key  }/${  allFiles[key][0].filename}`;
       }
     }
 
     return res.send(
-      await create({
+      await choices_question.create({
         ...Obj,
       })
     );
@@ -84,7 +76,7 @@ const Create = async (req, res) => {
     return res.status(400).send(error.message);
   }
 };
-export default {
+module.exports = {
   GetAll,
   GetOneById,
   UpdateById,

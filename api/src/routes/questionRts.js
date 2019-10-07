@@ -9,7 +9,7 @@ import {
   GetOneById,
   UpdateById,
   Delete,
-} from '../controllers/teste';
+} from '../controllers/questionCtrl';
 
 const router = Router();
 

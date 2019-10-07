@@ -1,25 +1,15 @@
-import {
-  Sequelize,
-  find,
-  findById,
-  findOneAndUpdate,
-  remove,
-  create,
-} from '../models/cpc';
-
-const { Op } = Sequelize;
-const MomentTimezone = require('moment-timezone');
+const question = require('../models/question');
 
 const GetAll = async (req, res) => {
   try {
-    return res.send(await find());
+    return res.send(await question.find());
   } catch (error) {
     return res.status(400).send(error.message);
   }
 };
 const GetOneById = async (req, res) => {
   try {
-    return res.send(await findById(req.params.id));
+    return res.send(await question.findById(req.params.id));
   } catch (error) {
     return res.status(400).send(error.message);
   }
@@ -27,25 +17,17 @@ const GetOneById = async (req, res) => {
 const UpdateById = async (req, res) => {
   try {
     const allFiles = req.files;
-    const Obj = {
-      ...req.body,
-    };
+    const Obj = { ...req.body };
     console.log(allFiles);
     if (allFiles) {
       for (const key in allFiles) {
-        Obj[key] = `images/cpc/${key}/${allFiles[key][0].filename}`;
+        Obj[key] = 'images/question/' + key + '/' + allFiles[key][0].filename;
       }
     }
     return res.send(
-      await findOneAndUpdate(
-        {
-          _id: req.params.id,
-        },
-        Obj,
-        {
-          new: true,
-        }
-      )
+      await question.findOneAndUpdate({ _id: req.params.id }, Obj, {
+        new: true,
+      })
     );
   } catch (error) {
     return res.status(400).send(error.message);
@@ -53,11 +35,7 @@ const UpdateById = async (req, res) => {
 };
 const Delete = async (req, res) => {
   try {
-    return res.send(
-      await remove({
-        _id: req.params.id,
-      })
-    );
+    return res.send(await question.remove({ _id: req.params.id }));
   } catch (error) {
     return res.status(400).send(error.message);
   }
@@ -65,26 +43,20 @@ const Delete = async (req, res) => {
 const Create = async (req, res) => {
   try {
     const allFiles = req.files;
-    const Obj = {
-      ...req.body,
-    };
+    const Obj = { ...req.body };
     console.log(allFiles);
     if (allFiles) {
       for (const key in allFiles) {
-        Obj[key] = `images/cpc/${key}/${allFiles[key][0].filename}`;
+        Obj[key] = 'images/question/' + key + '/' + allFiles[key][0].filename;
       }
     }
 
-    return res.send(
-      await create({
-        ...Obj,
-      })
-    );
+    return res.send(await question.create({ ...Obj }));
   } catch (error) {
     return res.status(400).send(error.message);
   }
 };
-export default {
+module.exports = {
   GetAll,
   GetOneById,
   UpdateById,
