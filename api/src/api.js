@@ -4,7 +4,7 @@ import '../database';
 
 class Api {
   constructor() {
-    this.server = express();
+    this.server = express()
 
     this.middlewares();
     this.routes();
